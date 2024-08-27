@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:theme_explorer/providers/items_provider.dart';
 import 'package:theme_explorer/screens/second_screen.dart';
+import 'package:theme_explorer/screens/settings_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -10,6 +11,19 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final itemsProvider = Provider.of<ItemsProvider>(context);
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Home Screen"),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return const SettingsScreen();
+                }));
+              },
+              icon: const Icon(Icons.settings))
+        ],
+      ),
       floatingActionButton: context.read<ItemsProvider>().items > 0
           ? FloatingActionButton(
               onPressed: () {
