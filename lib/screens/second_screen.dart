@@ -18,9 +18,11 @@ class SecondScreen extends StatelessWidget {
             itemCount: itemsProvider.items,
             itemBuilder: (context, index) {
               return ListTile(
+                onTap: () {
+                  context.read<ItemsProvider>().decrementItems();
+                },
                 title: Text("Item Number ${index + 1}"),
-                subtitle: const Text(
-                    "This is the item created by changing the item count on home screen"),
+                subtitle: const Text("Tap On the Tile to remove Item"),
               );
             },
           );
