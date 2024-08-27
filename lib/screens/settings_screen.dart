@@ -13,15 +13,49 @@ class SettingsScreen extends StatelessWidget {
         title: const Text("Settings"),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ListTile(
-            onTap: () {
-              themeProvider.changeThemeMode();
-            },
-            title: Text(
-                "Current Theme Mode: ${themeProvider.themeMode.toString().split('.')[1].toUpperCase()}"),
-            subtitle: const Text("Tap to change Theme Mode"),
-          )
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                  onPressed: () {
+                    themeProvider.changeThemeMode(themeMode: ThemeMode.light);
+                  },
+                  icon: const Icon(Icons.light_mode),
+                  iconSize: 64,
+                  color: themeProvider.themeMode == ThemeMode.dark
+                      ? Colors.black
+                      : Colors.yellow,
+                  padding: const EdgeInsets.all(32),
+                  style: IconButton.styleFrom(
+                      elevation:
+                          themeProvider.themeMode == ThemeMode.light ? 22 : 0,
+                      shadowColor: Colors.yellowAccent,
+                      backgroundColor: themeProvider.themeMode == ThemeMode.dark
+                          ? Colors.white
+                          : Colors.black)),
+              const SizedBox(width: 32),
+              IconButton(
+                onPressed: () {
+                  themeProvider.changeThemeMode(themeMode: ThemeMode.dark);
+                },
+                icon: const Icon(Icons.dark_mode),
+                iconSize: 64,
+                color: themeProvider.themeMode == ThemeMode.dark
+                    ? Colors.purple
+                    : Colors.white,
+                padding: const EdgeInsets.all(32),
+                style: IconButton.styleFrom(
+                  elevation: themeProvider.themeMode == ThemeMode.dark ? 22 : 0,
+                  shadowColor: Colors.purpleAccent,
+                  backgroundColor: themeProvider.themeMode == ThemeMode.dark
+                      ? Colors.white
+                      : Colors.black,
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
