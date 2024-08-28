@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:theme_explorer/chopper_services/todos_service.dart';
 import 'package:theme_explorer/providers/items_provider.dart';
 import 'package:theme_explorer/providers/theme_provider.dart';
 import 'package:theme_explorer/screens/home_screen.dart';
@@ -9,6 +10,12 @@ void main() {
     providers: [
       ChangeNotifierProvider(create: (context) => ThemeProvider()),
       ChangeNotifierProvider(create: (context) => ItemsProvider()),
+      Provider(
+        create: (context) => TodosService.create(),
+        dispose: (context, value) {
+          value.client.dispose();
+        },
+      )
     ],
     child: const MainApp(),
   ));
