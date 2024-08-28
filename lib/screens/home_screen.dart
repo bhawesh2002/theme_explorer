@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:theme_explorer/providers/items_provider.dart';
 import 'package:theme_explorer/screens/second_screen.dart';
 import 'package:theme_explorer/screens/settings_screen.dart';
+import 'package:theme_explorer/screens/todos_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -14,6 +15,14 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Home Screen"),
         actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return const TodosScreen();
+                }));
+              },
+              icon: const Icon(Icons.task)),
           IconButton(
               onPressed: () {
                 Navigator.of(context)
