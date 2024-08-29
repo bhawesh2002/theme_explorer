@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:theme_explorer/chopper_services/todos_service.dart';
+import 'package:theme_explorer/screens/todo_details_screen.dart';
 
 class TodosScreen extends StatelessWidget {
   const TodosScreen({super.key});
@@ -31,6 +32,11 @@ class TodosScreen extends StatelessWidget {
                 itemCount: todos.length,
                 itemBuilder: (context, index) {
                   return ListTile(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              TodoDetailsScreen(todoId: index + 1)));
+                    },
                     title: Text(todos[index]['title']),
                     trailing: todos[index]['completed'] == true
                         ? const Icon(Icons.check)
